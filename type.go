@@ -1,6 +1,6 @@
 package main
 
-import "os"
+type noteList []*note
 
 type note struct {
 	name               string
@@ -12,6 +12,14 @@ type note struct {
 }
 
 type status int
+
+type yamlData struct {
+	Uuid       string   `yaml:"uuid"`
+	TagList    yamlList `yaml:"tags"`
+	StatusList yamlList `yaml:"status"`
+}
+
+type yamlList []string
 
 const (
 	DELETE status = iota
@@ -25,21 +33,4 @@ var statusName = map[status]string{
 
 func (s status) String() string {
 	return statusName[s]
-}
-
-// func (n *note) getStatus() {
-// 	for _, status := range n.yamlData.StatusList {
-// 		switch status {
-// 		case "DELETE":
-// 			note.statusMap = true
-// 		case "TEMP":
-// 			note.status[TEMP] = true
-// 		}
-// 	}
-// }
-
-func (n *note) delete() {
-	err := os.Remove(n.path)
-	checkErr(err)
-	print(n.path)
 }

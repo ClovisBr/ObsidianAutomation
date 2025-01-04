@@ -1,4 +1,4 @@
-module obsidian
+module obsidian_automation
 
 go 1.23.2
 
