@@ -7,7 +7,6 @@ import (
 	"io"
 	"io/fs"
 	"os"
-	"path"
 	"regexp"
 	"strings"
 
@@ -16,10 +15,7 @@ import (
 	"obsidian_automation/utils"
 )
 
-func InitData() *noteList {
-	src_path, err := os.Getwd()
-	utils.CheckErr(err)
-	obsidian_path, _ := path.Split(src_path)
+func InitData(obsidian_path string) *noteList {
 	location_dir_list := initLocationDirList(obsidian_path)
 	note_list := initNoteList(obsidian_path, location_dir_list)
 
